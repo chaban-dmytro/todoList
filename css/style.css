@@ -1,0 +1,138 @@
+.container {
+  margin: 0 auto;
+  max-width: 400px;
+  background-color: #EAEAEA;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: #4D4D4D;
+}
+
+.title {
+  color: #D0D0D0;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.mylist {
+  margin: 0 15px;
+  padding: 10px;
+  background-color: #FDFDFD;
+  border-top: 15px solid #897D76;
+  -webkit-box-shadow: 0px 0px 2px 1px #000000; 
+  box-shadow: 0px 0px 2px 1px #000000;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed #897D76;
+  position: relative;
+}
+
+.todo-item :last-child {
+  margin-left: auto;
+}
+
+.input-wrapper input {
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 5px;
+  width: 93%;
+}
+
+.input-wrapper ::placeholder {
+  font-size: 20px;
+}
+
+.todo-status {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  clip:rect(0 0 0 0);
+}
+
+.custom-checkbox {
+  position: absolute;
+  background-image: url('../images/vektor-start.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.todo-status:checked + .custom-checkbox {
+  background-image: url('../images/vektor.svg');
+}
+
+.todo-description {
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.checked {
+  text-decoration: line-through;
+}
+
+.todo-btn-del {
+  background-image: url('../images/del.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: none;
+  background-color: transparent;
+  left: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.todo-btn-del:hover {
+  transform: rotate(90deg);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  margin: 0 auto;
+  font-size: 11px;
+  border: 1px solid #897D76;
+  color: #817570;
+  width: 85%;
+}
+
+.controls_left {
+  display: flex;
+}
+
+.controls_count {
+  font-weight: bold;
+  padding-right: 3px;
+}
+
+.btn {
+  font-size: 11px;
+  border: none;
+  cursor: pointer;
+  color: #817570;
+  padding: 4px;
+}
+
+.btn-active {
+  color: black;
+}
+
+.controls_del {
+  background-color: #D6D6D6;
+}

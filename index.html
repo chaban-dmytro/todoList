@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Todolist</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">
+      todos
+    </h1>
+    <div class="mylist">
+      <div class="addtodo">
+        <ul class="todo-wrapper"></ul>
+        <div class="input-wrapper">
+          <input class="input-checkbox" type="text" id="text-task" placeholder="Add a new task">
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="controls_left">
+        <span class="controls_count">0</span>
+        <p class="controls_text">items left</p>
+      </div>
+      <div class="controls_filter">
+        <span class="controls_all btn btn-active" id="all">All</span>
+        <span class="controls_active btn" id="pending">Active</span>
+        <span class="controls_completed btn" id="completed">Completed</span>
+      </div>
+      <div class="contols_clear">
+        <button class="controls_del btn">Clear completed
+          <span>(2)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
