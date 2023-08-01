@@ -1,10 +1,22 @@
 const taskInput = document.getElementById("text-task");
-filters = document.querySelectorAll(".controls_filter span");
-clearCompleted = document.querySelector(".controls_del");
-taskBox = document.querySelector(".todo-wrapper");
-const totalTaskCount = document.querySelector(".controls_count");
+const filters = document.querySelectorAll(".controls_filter span");
+const clearCompleted = document.querySelector(".controls_del");
+const taskBox = document.querySelector(".todo-wrapper");
+let totalTaskCount = document.querySelector( ".controls_count" );
+let totalCompletedTasks = document.querySelector( ".js-competed-counter" )
 
-let todos = JSON.parse(localStorage.getItem("todo-list"));
+clearCompleted.addEventListener( "click", clearCompletedTasks );
+taskInput.addEventListener( "keydown", addNewTask );
+
+let todos = JSON.parse( localStorage.getItem( "todo-list" ) );
+
+counter();
+
+function counter() {
+  totalTaskCount.textContent = todos.filter( todo => todo.status === "pending" ).length;
+  let completedCounter = todos.filter( todo => todo.status === "completed" ).length;
+  totalCompletedTasks.innerHTML = `(${completedCounter})`;
+}
 
 filters.forEach(btn => {
   btn.addEventListener("click", () => {
@@ -13,7 +25,6 @@ filters.forEach(btn => {
     showTodo(btn.id);
   })
 });
-
 
 function showTodo(filter) {
   let li = "";
@@ -35,43 +46,40 @@ function showTodo(filter) {
   taskBox.innerHTML = li || `<span> You don't have any tasks here <span>`;
 }
 
-// totalTaskCount = todos.lenght;
-// console.log(totalTaskCount);
-
 showTodo("all");
 
 function deleteTask(deleteId) {
   todos.splice(deleteId, 1);
   localStorage.setItem("todo-list", JSON.stringify(todos));
-  showTodo("all");
+  showTodo( "all" );
+  counter();
 }
 
-clearCompleted.addEventListener("click", () => {
-  todos.forEach((todo, status) => {
-    if(todo.status == "completed") {
-      // todos.splice(todo);
-    }
-  });
+function clearCompletedTasks(event) {
+  todos = todos.filter( todo => todo.status === "pending" );
   localStorage.setItem("todo-list", JSON.stringify(todos));
-  showTodo("all");
-});
+  showTodo( "all" );
+  counter();
+};
 
 function updateStatus(selectedTask) {
   let taskName = selectedTask.parentElement.lastElementChild;
   if(selectedTask.checked) {
     taskName.classList.add("checked");
     todos[selectedTask.id].status = "completed"
+    // console.log(selectedTask.id);
   }
   else {
     taskName.classList.remove("checked");
     todos[selectedTask.id].status = "pending"
   }
-  localStorage.setItem("todo-list", JSON.stringify(todos));
+  localStorage.setItem( "todo-list", JSON.stringify( todos ) );
+  counter();
 }
 
-taskInput.addEventListener("keyup", e => {
+function addNewTask( event ) {
   let userTask = taskInput.value.trim();
-  if(e.key == "Enter" && userTask) {
+  if(event.code == "Enter" && userTask) {
     if(!todos) {
       todos = [];
     }
@@ -79,15 +87,12 @@ taskInput.addEventListener("keyup", e => {
     let taskInfo = {name: userTask, status: "pending"};
     todos.push(taskInfo);
     localStorage.setItem("todo-list", JSON.stringify(todos));
-    showTodo("all");
+    showTodo( "all" );
+    counter();
   }
-})
+}
 
-// const controlsCount = document.querySelector(".controls_count");
-// controlsCount.textContent = todos.lenght;
-// console.log(controlsCount);
-// const controlCount = todos.lenght;
-// console.log(controlCount);
+
 
 
 
